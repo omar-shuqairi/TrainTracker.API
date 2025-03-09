@@ -19,12 +19,6 @@ builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 builder.Services.AddScoped<IStationsRepository, StationsRepository>();
 builder.Services.AddScoped<ITrainsRepository, TrainsRepository>();
-
-
-
-
-
-
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 builder.Services.AddScoped<IStationsService, StationsService>();
