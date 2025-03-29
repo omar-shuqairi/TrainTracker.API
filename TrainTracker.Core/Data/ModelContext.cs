@@ -195,15 +195,23 @@ namespace TrainTracker.Core.Data
                     .ValueGeneratedOnAdd()
                     .HasColumnName("STATION_ID");
 
+                entity.Property(e => e.Area)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("AREA");
+
                 entity.Property(e => e.City)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("CITY");
 
-                entity.Property(e => e.Coordinates)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("COORDINATES");
+                entity.Property(e => e.Latitude)
+                    .HasColumnType("NUMBER(9,6)")
+                    .HasColumnName("LATITUDE");
+
+                entity.Property(e => e.Longitude)
+                    .HasColumnType("NUMBER(9,6)")
+                    .HasColumnName("LONGITUDE");
 
                 entity.Property(e => e.StationName)
                     .HasMaxLength(100)

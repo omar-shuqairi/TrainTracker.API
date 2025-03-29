@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Common;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 using static System.Collections.Specialized.BitVector32;
 
@@ -48,6 +49,7 @@ namespace TrainTracker.Infra.Repository
             return result.ToList();
         }
 
+
         public Testimonial GetTestimonialById(int id)
         {
             var p = new DynamicParameters();
@@ -67,6 +69,51 @@ namespace TrainTracker.Infra.Repository
             p.Add("p_User_ID", testimonial.UserId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = _dbContext.Connection.Execute("Testimonials_PKG.UpdateTestimonial", p, commandType: CommandType.StoredProcedure);
+        }
+
+        public List<ManageTestimonialsDto> GetApprovedTestimonialsForAdmindash()
+        {
+
+            IEnumerable<ManageTestimonialsDto> result = _dbContext.Connection.Query<ManageTestimonialsDto>
+            ("Testimonials_PKG.GetApprovedTestimonialsForAdmindash", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<ManageTestimonialsDto> GetPendingTestimonials()
+        {
+            IEnumerable<ManageTestimonialsDto> result = _dbContext.Connection.Query<ManageTestimonialsDto>
+           ("Testimonials_PKG.GetPendingTestimonials", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<ManageTestimonialsDto> GetRejectedTestimonials()
+        {
+            IEnumerable<ManageTestimonialsDto> result = _dbContext.Connection.Query<ManageTestimonialsDto>
+           ("Testimonials_PKG.GetRejectedTestimonials", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<ViewTestimonialsDto> GetApprovedTestimonialsForHome()
+        {
+            IEnumerable<ViewTestimonialsDto> result = _dbContext.Connection.Query<ViewTestimonialsDto>
+          ("Testimonials_PKG.GetApprovedTestimonialsForAbout", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public void UpdateTestimonialToApprove(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("p_Testimonial_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dbContext.Connection.Execute("Testimonials_PKG.UpdateTestimonialToApprove", p, commandType: CommandType.StoredProcedure);
+
+        }
+
+        public void UpdateTestimonialToReject(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("p_Testimonial_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dbContext.Connection.Execute("Testimonials_PKG.UpdateTestimonialToReject", p, commandType: CommandType.StoredProcedure);
+
         }
     }
 }

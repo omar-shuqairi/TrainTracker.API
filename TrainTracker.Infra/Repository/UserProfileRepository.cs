@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Common;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 
 namespace TrainTracker.Infra.Repository
@@ -56,6 +57,7 @@ namespace TrainTracker.Infra.Repository
             return result.FirstOrDefault();
         }
 
+
         public void UpdateUserProfile(UserProfile userProfile)
         {
             var p = new DynamicParameters();
@@ -68,6 +70,28 @@ namespace TrainTracker.Infra.Repository
             p.Add("p_City", userProfile.City, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_User_ID", userProfile.UserId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = _dbContext.Connection.Execute("UserProfile_PKG.UpdateProfile", p, commandType: CommandType.StoredProcedure);
+        }
+        public async Task<int> RegisterUserAsync(RegisterDto Registeruser)
+        {
+            var p = new DynamicParameters();
+
+            p.Add("p_Email", Registeruser.Email, DbType.String, ParameterDirection.Input);
+            p.Add("p_Password", Registeruser.Password, DbType.String, ParameterDirection.Input);
+            p.Add("p_FirstName", Registeruser.FirstName, DbType.String, ParameterDirection.Input);
+            p.Add("p_LastName", Registeruser.LastName, DbType.String, ParameterDirection.Input);
+            p.Add("p_Gender", Registeruser.Gender, DbType.String, ParameterDirection.Input);
+            p.Add("p_DateOfBirth", Registeruser.DateOfBirth, DbType.Date, ParameterDirection.Input);
+            p.Add("p_ProfileImage", Registeruser.ProfileImage, DbType.String, ParameterDirection.Input);
+            p.Add("p_City", Registeruser.City, DbType.String, ParameterDirection.Input);
+
+            // متغير الإخراج لاسترجاع UserID
+            p.Add("p_UserID", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            // استدعاء الإجراء المخزن
+            await _dbContext.Connection.ExecuteAsync("UserProfile_PKG.User_Register", p, commandType: CommandType.StoredProcedure);
+
+            // استرجاع قيمة الإخراج
+            return p.Get<int>("p_UserID");
         }
     }
 }

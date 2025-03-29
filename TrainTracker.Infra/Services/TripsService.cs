@@ -39,7 +39,12 @@ namespace TrainTracker.Infra.Services
 
         public void UpdateTrip(Trip trip)
         {
-           _tripsRepository.UpdateTrip(trip);
+            _tripsRepository.UpdateTrip(trip);
         }
+        public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
+        {
+            return _tripsRepository.GetTripsBetweenDates(startDate, endDate);
+        }
+
     }
 }

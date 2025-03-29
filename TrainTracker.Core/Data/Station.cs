@@ -14,8 +14,10 @@ namespace TrainTracker.Core.Data
 
         public decimal StationId { get; set; }
         public string StationName { get; set; } = null!;
-        public string? Coordinates { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
         public string? City { get; set; }
+        public string? Area { get; set; }
 
         public virtual ICollection<FavoriteStation> FavoriteStations { get; set; }
         public virtual ICollection<Trip> TripEndStations { get; set; }

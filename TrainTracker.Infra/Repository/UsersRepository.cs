@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Common;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 
 namespace TrainTracker.Infra.Repository
@@ -36,9 +37,9 @@ namespace TrainTracker.Infra.Repository
             var result = _dbContext.Connection.Execute("Users_PKG.DeleteUser", p, commandType: CommandType.StoredProcedure);
         }
 
-        public List<User> GetAllUsers()
+        public List<UsersDetailsDto> GetAllUsers()
         {
-            IEnumerable<User> result = _dbContext.Connection.Query<User>
+            IEnumerable<UsersDetailsDto> result = _dbContext.Connection.Query<UsersDetailsDto>
                ("Users_PKG.GetAllUsers", commandType: CommandType.StoredProcedure);
 
             return result.ToList();
@@ -61,6 +62,13 @@ namespace TrainTracker.Infra.Repository
             p.Add("p_Password", user.Password, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_Role_ID", user.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = _dbContext.Connection.Execute("Users_PKG.UpdateUser", p, commandType: CommandType.StoredProcedure);
+        }
+        public int GetCountOfUsers()
+        {
+            var p = new DynamicParameters();
+            p.Add("users_count", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            _dbContext.Connection.Execute("Users_PKG.GetNumberOfUsers", p, commandType: CommandType.StoredProcedure);
+            return p.Get<int>("users_count");
         }
     }
 }

@@ -33,6 +33,7 @@ namespace TrainTracker.Infra.Services
             return _stationsRepository.GetAllStations();
         }
 
+
         public Station GetStationById(int id)
         {
             return _stationsRepository.GetStationById(id);
@@ -41,6 +42,15 @@ namespace TrainTracker.Infra.Services
         public void UpdateStation(Station station)
         {
             _stationsRepository.UpdateStation(station);
+        }
+        public int GetCountOfStations()
+        {
+            return _stationsRepository.GetCountOfStations();
+        }
+
+        public List<Station> SearchStationsByName(string name)
+        {
+            return _stationsRepository.SearchStationsByName(name);
         }
     }
 }

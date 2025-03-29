@@ -39,7 +39,7 @@ namespace TrainTracker.API.Controllers
         [HttpPut]
         public void UpdateTrip(Trip trip)
         {
-            _tripsService.CreateTrip(trip);
+            _tripsService.UpdateTrip(trip);
         }
 
         [HttpDelete]
@@ -47,6 +47,12 @@ namespace TrainTracker.API.Controllers
         public void DeleteTrip(int id)
         {
             _tripsService.DeleteTrip(id);
+        }
+
+        [HttpGet("GetTripsBetweenDates")]
+        public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
+        {
+            return _tripsService.GetTripsBetweenDates(startDate, endDate);
         }
     }
 }

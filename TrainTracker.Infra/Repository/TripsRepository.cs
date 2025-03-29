@@ -26,10 +26,10 @@ namespace TrainTracker.Infra.Repository
             var p = new DynamicParameters();
             p.Add("p_Departure_Time", trip.DepartureTime, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             p.Add("p_Ticket_Price", trip.TicketPrice, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("p_Trip_Description", trip.TripDescription, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_Trip_Description", trip.TripDescription, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_Train_ID", trip.TrainId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("p_Start_Station_ID", trip.StartStation, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("p_End_Station_ID", trip.EndStation, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_Start_Station_ID", trip.StartStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_End_Station_ID", trip.EndStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = _dbContext.Connection.Execute("Trips_PKG.CreateTrip", p, commandType: CommandType.StoredProcedure);
         }
@@ -58,18 +58,43 @@ namespace TrainTracker.Infra.Repository
             return result.FirstOrDefault();
         }
 
+
         public void UpdateTrip(Trip trip)
         {
             var p = new DynamicParameters();
-            p.Add("p_Trip_ID", trip.TrainId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_Trip_ID", trip.TripId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_Departure_Time", trip.DepartureTime, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             p.Add("p_Ticket_Price", trip.TicketPrice, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("p_Trip_Description", trip.TripDescription, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_Trip_Description", trip.TripDescription, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_Train_ID", trip.TrainId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("p_Start_Station_ID", trip.StartStation, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("p_End_Station_ID", trip.EndStation, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_Start_Station_ID", trip.StartStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_End_Station_ID", trip.EndStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = _dbContext.Connection.Execute("Trips_PKG.UpdateTrip", p, commandType: CommandType.StoredProcedure);
+        }
+        public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
+        {
+            var p = new DynamicParameters();
+            if (startDate.HasValue)
+            {
+                p.Add("p_start_date", startDate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            }
+            else
+            {
+                p.Add("p_start_date", DBNull.Value, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            }
+
+            if (endDate.HasValue)
+            {
+                p.Add("p_end_date", endDate, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            }
+            else
+            {
+                p.Add("p_end_date", DBNull.Value, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            }
+
+            IEnumerable<Trip> result = _dbContext.Connection.Query<Trip>("Trips_PKG.GetTripsBetweenDates", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

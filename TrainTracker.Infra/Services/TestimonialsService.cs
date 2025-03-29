@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 using TrainTracker.Core.Services;
 
@@ -41,6 +42,36 @@ namespace TrainTracker.Infra.Services
         public void UpdateTestimonial(Testimonial testimonial)
         {
             _testimonialsRepository.UpdateTestimonial(testimonial);
+        }
+
+        public List<ManageTestimonialsDto> GetApprovedTestimonialsForAdmindash()
+        {
+            return _testimonialsRepository.GetApprovedTestimonialsForAdmindash();
+        }
+
+        public List<ManageTestimonialsDto> GetPendingTestimonials()
+        {
+            return _testimonialsRepository.GetPendingTestimonials();
+        }
+
+        public List<ManageTestimonialsDto> GetRejectedTestimonials()
+        {
+            return _testimonialsRepository.GetRejectedTestimonials();
+        }
+
+        public List<ViewTestimonialsDto> GetApprovedTestimonialsForHome()
+        {
+            return _testimonialsRepository.GetApprovedTestimonialsForHome();
+        }
+
+        public void UpdateTestimonialToApprove(int id)
+        {
+            _testimonialsRepository.UpdateTestimonialToApprove(id);
+        }
+
+        public void UpdateTestimonialToReject(int id)
+        {
+            _testimonialsRepository.UpdateTestimonialToReject(id);
         }
     }
 }

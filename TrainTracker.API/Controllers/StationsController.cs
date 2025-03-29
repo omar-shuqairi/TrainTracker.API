@@ -49,5 +49,21 @@ namespace TrainTracker.API.Controllers
         {
             _stationsService.DeleteStation(id);
         }
+
+        [HttpGet]
+        [Route("GetCountOfStations")]
+        public int GetCountOfStations()
+        {
+            return _stationsService.GetCountOfStations();
+        }
+
+        [HttpGet]
+        [Route("SearchStationsByName/{name}")]
+        public List<Station> SearchStationsByName(string name)
+        {
+            return _stationsService.SearchStationsByName(name);
+
+        }
+
     }
 }

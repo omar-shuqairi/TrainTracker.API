@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 
 namespace TrainTracker.Core.Services
 {
     public interface IUsersService
     {
-        List<User> GetAllUsers();
+        List<UsersDetailsDto> GetAllUsers();
         void CreateUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
         User GetUserById(int id);
+        int GetCountOfUsers();
     }
 }

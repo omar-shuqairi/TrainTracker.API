@@ -14,5 +14,7 @@ namespace TrainTracker.Core.Repository
         void UpdateTrip(Trip trip);
         void DeleteTrip(int id);
         Trip GetTripById(int id);
+
+        List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate);
     }
 }

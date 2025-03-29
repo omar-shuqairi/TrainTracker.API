@@ -14,5 +14,9 @@ namespace TrainTracker.Core.Repository
         void UpdateStation(Station station);
         void DeleteStation(int id);
         Station GetStationById(int id);
+
+        int GetCountOfStations();
+
+        List<Station> SearchStationsByName(string name);
     }
 }

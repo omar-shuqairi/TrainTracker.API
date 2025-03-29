@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Services;
 using TrainTracker.Infra.Services;
 
@@ -49,5 +50,50 @@ namespace TrainTracker.API.Controllers
         {
             _testimonialsService.DeleteTestimonial(id);
         }
+
+        [HttpGet]
+        [Route("GetApprovedTestimonialsForAdmindash")]
+        public List<ManageTestimonialsDto> GetApprovedTestimonialsForAdmindash()
+        {
+            return _testimonialsService.GetApprovedTestimonialsForAdmindash();
+        }
+
+        [HttpGet]
+        [Route("GetPendingTestimonials")]
+        public List<ManageTestimonialsDto> GetPendingTestimonials()
+        {
+            return _testimonialsService.GetPendingTestimonials();
+        }
+
+        [HttpGet]
+        [Route("GetRejectedTestimonials")]
+        public List<ManageTestimonialsDto> GetRejectedTestimonials()
+        {
+            return _testimonialsService.GetRejectedTestimonials();
+        }
+
+        [HttpGet]
+        [Route("GetApprovedTestimonialsForHome")]
+        public List<ViewTestimonialsDto> GetApprovedTestimonialsForHome()
+        {
+            return _testimonialsService.GetApprovedTestimonialsForHome();
+        }
+
+        [HttpPost]
+        [Route("UpdateTestimonialToApprove/{id}")]
+        public void UpdateTestimonialToApprove(int id)
+        {
+           _testimonialsService.UpdateTestimonialToApprove(id);
+        }
+
+        [HttpPost]
+        [Route("UpdateTestimonialToReject/{id}")]
+        public void UpdateTestimonialToReject(int id)
+        {
+            _testimonialsService.UpdateTestimonialToReject(id);
+        }
+
+
+
     }
 }

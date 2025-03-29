@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Services;
 using TrainTracker.Infra.Services;
 
@@ -19,7 +20,7 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
-        public List<User> GetAllUsers()
+        public List<UsersDetailsDto> GetAllUsers()
         {
             return _usersService.GetAllUsers();
         }
@@ -52,5 +53,11 @@ namespace TrainTracker.API.Controllers
             _usersService.DeleteUser(id);
         }
 
+        [HttpGet]
+        [Route("GetCountOfUsers")]
+        public int GetCountOfUsers()
+        {
+            return _usersService.GetCountOfUsers();
+        }
     }
 }

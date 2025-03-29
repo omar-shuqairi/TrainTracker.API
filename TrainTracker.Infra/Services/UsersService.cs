@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 using TrainTracker.Core.Services;
 
@@ -28,7 +29,7 @@ namespace TrainTracker.Infra.Services
             _usersRepository.DeleteUser(id);
         }
 
-        public List<User> GetAllUsers()
+        public List<UsersDetailsDto> GetAllUsers()
         {
             return _usersRepository.GetAllUsers();
         }
@@ -42,5 +43,10 @@ namespace TrainTracker.Infra.Services
         {
             _usersRepository.UpdateUser(user);
         }
+        public int GetCountOfUsers()
+        {
+            return _usersRepository.GetCountOfUsers();
+        }
+
     }
 }
