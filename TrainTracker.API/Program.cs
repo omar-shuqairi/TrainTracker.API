@@ -27,7 +27,6 @@ builder.Services.AddScoped<ITicketsRepository, TicketsRepository>();
 builder.Services.AddScoped<IPaymentsRepository, PaymentsRepository>();
 builder.Services.AddScoped<ITestimonialsRepository, TestimonialsRepository>();
 builder.Services.AddScoped<IFavoriteStationsRepository, FavoriteStationsRepository>();
-builder.Services.AddScoped<IPageSettingsRepository, PageSettingsRepository>();
 builder.Services.AddScoped<IJWTRepository, JWTRepository>();
 
 
@@ -40,7 +39,6 @@ builder.Services.AddScoped<ITicketsSerivce, TicketsSerivce>();
 builder.Services.AddScoped<IPaymentsService, PaymentsService>();
 builder.Services.AddScoped<ITestimonialsService, TestimonialsService>();
 builder.Services.AddScoped<IFavoriteStationsService, FavoriteStationsService>();
-builder.Services.AddScoped<IPageSettingsService, PageSettingsService>();
 builder.Services.AddScoped<IJWTService, JWTService>();
 
 
