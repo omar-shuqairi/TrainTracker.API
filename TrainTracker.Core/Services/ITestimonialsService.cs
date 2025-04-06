@@ -22,5 +22,8 @@ namespace TrainTracker.Core.Services
         void UpdateTestimonialToApprove(int id);
         void UpdateTestimonialToReject(int id);
 
+        void PostTestimonialFromUsers(PostTestimonialFromUsersDto postTestimonial);
+
+
     }
 }

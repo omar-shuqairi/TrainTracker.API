@@ -83,7 +83,7 @@ namespace TrainTracker.API.Controllers
         [Route("UpdateTestimonialToApprove/{id}")]
         public void UpdateTestimonialToApprove(int id)
         {
-           _testimonialsService.UpdateTestimonialToApprove(id);
+            _testimonialsService.UpdateTestimonialToApprove(id);
         }
 
         [HttpPost]
@@ -91,6 +91,14 @@ namespace TrainTracker.API.Controllers
         public void UpdateTestimonialToReject(int id)
         {
             _testimonialsService.UpdateTestimonialToReject(id);
+        }
+
+        [HttpPost]
+        [Route("PostTestimonialFromUsers")]
+
+        public void PostTestimonialFromUsers(PostTestimonialFromUsersDto postTestimonial)
+        {
+            _testimonialsService.PostTestimonialFromUsers(postTestimonial);
         }
 
 

@@ -115,5 +115,15 @@ namespace TrainTracker.Infra.Repository
             var result = _dbContext.Connection.Execute("Testimonials_PKG.UpdateTestimonialToReject", p, commandType: CommandType.StoredProcedure);
 
         }
+
+        public void PostTestimonialFromUsers(PostTestimonialFromUsersDto postTestimonial)
+        {
+            var p = new DynamicParameters();
+
+            p.Add("p_User_ID", postTestimonial.UserId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_Testimonial_text", postTestimonial.TestimonialText, dbType: DbType.String, direction: ParameterDirection.Input);
+            var result = _dbContext.Connection.Execute("Testimonials_PKG.PostTestimonialFromUsers", p, commandType: CommandType.StoredProcedure);
+
+        }
     }
 }

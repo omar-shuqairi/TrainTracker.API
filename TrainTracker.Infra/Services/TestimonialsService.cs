@@ -73,5 +73,10 @@ namespace TrainTracker.Infra.Services
         {
             _testimonialsRepository.UpdateTestimonialToReject(id);
         }
+
+        public void PostTestimonialFromUsers(PostTestimonialFromUsersDto postTestimonial)
+        {
+            _testimonialsRepository.PostTestimonialFromUsers(postTestimonial);
+        }
     }
 }

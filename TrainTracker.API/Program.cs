@@ -28,6 +28,11 @@ builder.Services.AddScoped<IPaymentsRepository, PaymentsRepository>();
 builder.Services.AddScoped<ITestimonialsRepository, TestimonialsRepository>();
 builder.Services.AddScoped<IFavoriteStationsRepository, FavoriteStationsRepository>();
 builder.Services.AddScoped<IJWTRepository, JWTRepository>();
+builder.Services.AddScoped<IHomePageRepository, HomePageRepository>();
+builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
+builder.Services.AddScoped<IContactPageRepository, ContactPageRepository>();
+builder.Services.AddScoped<IFooterRepository, FooterRepository>();
+
 
 
 builder.Services.AddScoped<IUsersService, UsersService>();
@@ -40,6 +45,10 @@ builder.Services.AddScoped<IPaymentsService, PaymentsService>();
 builder.Services.AddScoped<ITestimonialsService, TestimonialsService>();
 builder.Services.AddScoped<IFavoriteStationsService, FavoriteStationsService>();
 builder.Services.AddScoped<IJWTService, JWTService>();
+builder.Services.AddScoped<IHomePageService, HomePageService>();
+builder.Services.AddScoped<IAboutPageService, AboutPageService>();
+builder.Services.AddScoped<IContactPageService, ContactPageService>();
+builder.Services.AddScoped<IFooterService, FooterService>();
 
 
 Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;//This will tell Dapper to match underscores automatically, so User_ID maps to UserId in C#.
