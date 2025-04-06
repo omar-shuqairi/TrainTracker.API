@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 
 namespace TrainTracker.Core.Services
 {
@@ -15,6 +16,9 @@ namespace TrainTracker.Core.Services
         void DeleteTrip(int id);
         Trip GetTripById(int id);
         List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate);
+
+        List<TripDto> GetAllTripsUpToDate();
+
 
     }
 }

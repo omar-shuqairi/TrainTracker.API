@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,13 @@ namespace TrainTracker.Infra.Repository
             p.Add("p_Disabled_Seat_Capacity", train.DisabledSeatCapacity, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_Total_Seat_Capacity", train.TotalSeatCapacity, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = _dbContext.Connection.Execute("Trains_PKG.UpdateTrain", p, commandType: CommandType.StoredProcedure);
+        }
+
+        public void UpdateSeatCapacity(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("p_Train_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            _dbContext.Connection.Execute("Trains_PKG.UpdateSeatCapacity", p, commandType: CommandType.StoredProcedure);
         }
     }
 }

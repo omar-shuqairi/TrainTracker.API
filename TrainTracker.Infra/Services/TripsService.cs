@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 using TrainTracker.Core.Services;
 
@@ -46,5 +47,9 @@ namespace TrainTracker.Infra.Services
             return _tripsRepository.GetTripsBetweenDates(startDate, endDate);
         }
 
+        public List<TripDto> GetAllTripsUpToDate()
+        {
+            return _tripsRepository.GetAllTripsUpToDate();
+        }
     }
 }

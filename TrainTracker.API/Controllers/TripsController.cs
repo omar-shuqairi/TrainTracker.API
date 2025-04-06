@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Services;
 using TrainTracker.Infra.Services;
 
@@ -53,6 +54,13 @@ namespace TrainTracker.API.Controllers
         public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
         {
             return _tripsService.GetTripsBetweenDates(startDate, endDate);
+        }
+
+        [HttpGet]
+        [Route("GetAllTripsUpToDate")]
+        public List<TripDto> GetAllTripsUpToDate()
+        {
+            return _tripsService.GetAllTripsUpToDate();
         }
     }
 }

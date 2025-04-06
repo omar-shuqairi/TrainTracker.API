@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Common;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Repository;
 using static System.Collections.Specialized.BitVector32;
 
@@ -94,6 +95,13 @@ namespace TrainTracker.Infra.Repository
             }
 
             IEnumerable<Trip> result = _dbContext.Connection.Query<Trip>("Trips_PKG.GetTripsBetweenDates", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<TripDto> GetAllTripsUpToDate()
+        {
+            IEnumerable<TripDto> result = _dbContext.Connection.Query<TripDto>
+           ("Trips_PKG.GetAllTripsUpToDate", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
     }

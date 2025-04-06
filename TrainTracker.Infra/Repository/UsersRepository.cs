@@ -45,11 +45,11 @@ namespace TrainTracker.Infra.Repository
             return result.ToList();
         }
 
-        public User GetUserById(int id)
+        public UsersDetailsDto GetUserById(int id)
         {
             var p = new DynamicParameters();
             p.Add("p_User_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<User> result = _dbContext.Connection.Query<User>
+            IEnumerable<UsersDetailsDto> result = _dbContext.Connection.Query<UsersDetailsDto>
                ("Users_PKG.GetUserById", p, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
         }

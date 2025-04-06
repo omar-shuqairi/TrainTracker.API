@@ -14,5 +14,6 @@ namespace TrainTracker.Core.Repository
         void UpdateTrain(Train train);
         void DeleteTrain(int id);
         Train GetTrainById(int id);
+        void UpdateSeatCapacity(int id);
     }
 }

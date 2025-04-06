@@ -17,5 +17,6 @@ namespace TrainTracker.Core.DTO
         public DateTime Date_Of_Birth { get; set; }
         public string Profile_Image { get; set; }
         public string City { get; set; }
+        public string password { get; set; }
     }
 }

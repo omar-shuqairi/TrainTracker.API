@@ -49,5 +49,12 @@ namespace TrainTracker.API.Controllers
         {
             _TrainsService.DeleteTrain(id);
         }
+
+        [HttpPut]
+        [Route("UpdateSeatCapacity/{id}")]
+        public void UpdateSeatCapacity(int id)
+        {
+            _TrainsService.UpdateSeatCapacity(id);
+        }
     }
 }

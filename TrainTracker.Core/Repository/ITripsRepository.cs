@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 
 namespace TrainTracker.Core.Repository
 {
@@ -16,5 +17,7 @@ namespace TrainTracker.Core.Repository
         Trip GetTripById(int id);
 
         List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate);
+
+        List<TripDto> GetAllTripsUpToDate();
     }
 }

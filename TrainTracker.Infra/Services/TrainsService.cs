@@ -32,6 +32,7 @@ namespace TrainTracker.Infra.Services
             return _trainsRepository.GetAllTrains();
         }
 
+
         public Train GetTrainById(int id)
         {
             return _trainsRepository.GetTrainById(id);
@@ -40,6 +41,11 @@ namespace TrainTracker.Infra.Services
         public void UpdateTrain(Train train)
         {
             _trainsRepository.UpdateTrain(train);
+        }
+
+        public void UpdateSeatCapacity(int id)
+        {
+            _trainsRepository.UpdateSeatCapacity(id);
         }
     }
 }

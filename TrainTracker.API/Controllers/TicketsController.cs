@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
+using TrainTracker.Core.DTO;
 using TrainTracker.Core.Services;
 using TrainTracker.Infra.Services;
 
@@ -48,6 +49,13 @@ namespace TrainTracker.API.Controllers
         public void DeleteTicket(int id)
         {
             _ticketsSerivce.DeleteTicket(id);
+        }
+
+        [HttpGet]
+        [Route("GetReport")]
+        public List<ReportDto> GetReport([FromQuery] string type, [FromQuery] string year, [FromQuery] string? month)
+        {
+            return _ticketsSerivce.GetReport(type, year, month);
         }
     }
 }

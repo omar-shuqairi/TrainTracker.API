@@ -34,7 +34,7 @@ namespace TrainTracker.Infra.Services
             return _usersRepository.GetAllUsers();
         }
 
-        public User GetUserById(int id)
+        public UsersDetailsDto GetUserById(int id)
         {
             return _usersRepository.GetUserById(id);
         }

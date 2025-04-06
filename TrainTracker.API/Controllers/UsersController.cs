@@ -27,7 +27,7 @@ namespace TrainTracker.API.Controllers
 
         [HttpGet]
         [Route("getbyId/{id}")]
-        public User GetUserById(int id)
+        public UsersDetailsDto GetUserById(int id)
         {
             return _usersService.GetUserById(id);
         }

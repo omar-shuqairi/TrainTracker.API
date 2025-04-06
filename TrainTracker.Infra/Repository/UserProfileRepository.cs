@@ -51,7 +51,7 @@ namespace TrainTracker.Infra.Repository
         public UserProfile GetUserProfileById(int id)
         {
             var p = new DynamicParameters();
-            p.Add("p_Profile_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_User_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             IEnumerable<UserProfile> result = _dbContext.Connection.Query<UserProfile>
                ("UserProfile_PKG.GetProfileById", p, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();

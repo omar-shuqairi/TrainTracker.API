@@ -14,7 +14,7 @@ namespace TrainTracker.Core.Repository
         void CreateUser(User user);
         void UpdateUser(User user);
         void DeleteUser(int id);
-        User GetUserById(int id);
+        UsersDetailsDto GetUserById(int id);
         int GetCountOfUsers();
     }
 }

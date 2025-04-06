@@ -16,7 +16,11 @@ namespace TrainTracker.Core.Data
         {
         }
 
+        public virtual DbSet<AboutPage> AboutPages { get; set; } = null!;
+        public virtual DbSet<ContactPage> ContactPages { get; set; } = null!;
         public virtual DbSet<FavoriteStation> FavoriteStations { get; set; } = null!;
+        public virtual DbSet<Footer> Footers { get; set; } = null!;
+        public virtual DbSet<HomePage> HomePages { get; set; } = null!;
         public virtual DbSet<PageSetting> PageSettings { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Role> Roles { get; set; } = null!;
@@ -41,6 +45,62 @@ namespace TrainTracker.Core.Data
         {
             modelBuilder.HasDefaultSchema("C##OMARSHUQAIRI5")
                 .UseCollation("USING_NLS_COMP");
+
+            modelBuilder.Entity<AboutPage>(entity =>
+            {
+                entity.HasKey(e => e.AboutId)
+                    .HasName("SYS_C008774");
+
+                entity.ToTable("ABOUT_PAGE");
+
+                entity.Property(e => e.AboutId)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ABOUT_ID");
+
+                entity.Property(e => e.HowItWorks)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("HOW_IT_WORKS");
+
+                entity.Property(e => e.OurMission)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("OUR_MISSION");
+
+                entity.Property(e => e.WhyChooseUs)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("WHY_CHOOSE_US");
+            });
+
+            modelBuilder.Entity<ContactPage>(entity =>
+            {
+                entity.HasKey(e => e.ContactId)
+                    .HasName("SYS_C008778");
+
+                entity.ToTable("CONTACT_PAGE");
+
+                entity.Property(e => e.ContactId)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("CONTACT_ID");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("ADDRESS");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAIL");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("PHONE");
+            });
 
             modelBuilder.Entity<FavoriteStation>(entity =>
             {
@@ -73,6 +133,59 @@ namespace TrainTracker.Core.Data
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_FAV_USER");
+            });
+
+            modelBuilder.Entity<Footer>(entity =>
+            {
+                entity.ToTable("FOOTER");
+
+                entity.Property(e => e.FooterId)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("FOOTER_ID");
+
+                entity.Property(e => e.AboutUs)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("ABOUT_US");
+
+                entity.Property(e => e.Copyright)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("COPYRIGHT");
+            });
+
+            modelBuilder.Entity<HomePage>(entity =>
+            {
+                entity.HasKey(e => e.HomeId)
+                    .HasName("SYS_C008772");
+
+                entity.ToTable("HOME_PAGE");
+
+                entity.Property(e => e.HomeId)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("HOME_ID");
+
+                entity.Property(e => e.BgHero)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("BG_HERO");
+
+                entity.Property(e => e.LogoImg)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("LOGO_IMG");
+
+                entity.Property(e => e.Paragraph1)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("PARAGRAPH1");
+
+                entity.Property(e => e.Paragraph2)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasColumnName("PARAGRAPH2");
             });
 
             modelBuilder.Entity<PageSetting>(entity =>
