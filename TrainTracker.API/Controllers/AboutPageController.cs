@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
 using TrainTracker.Core.Services;
@@ -23,6 +24,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public void UpdateAboutPage([FromBody] AboutPage aboutPage)
         {
             _aboutPageService.UpdateAboutPage(aboutPage);

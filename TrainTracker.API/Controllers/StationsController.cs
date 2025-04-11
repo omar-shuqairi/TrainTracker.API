@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
 using TrainTracker.Core.Services;
@@ -31,18 +32,24 @@ namespace TrainTracker.API.Controllers
 
 
         [HttpPost]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public void CreateStation(Station station)
         {
             _stationsService.CreateStation(station);
         }
 
         [HttpPut]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public void UpdateStation(Station station)
         {
             _stationsService.UpdateStation(station);
         }
 
         [HttpDelete]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("DeleteStation/{id}")]
 
         public void DeleteStation(int id)
@@ -51,6 +58,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("GetCountOfStations")]
         public int GetCountOfStations()
         {

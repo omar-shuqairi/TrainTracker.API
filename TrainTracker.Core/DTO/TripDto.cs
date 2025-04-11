@@ -23,5 +23,10 @@ namespace TrainTracker.Core.DTO
 
         public int TotalSeatCapacity { get; set; }
 
+        public int Start_Station_ID { get; set; }
+
+        public int End_Station_ID { get; set; }
+
+
     }
 }

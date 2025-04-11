@@ -43,9 +43,9 @@ namespace TrainTracker.Infra.Repository
             var result = _dbContext.Connection.Execute("Trips_PKG.DeleteTrip", p, commandType: CommandType.StoredProcedure);
         }
 
-        public List<Trip> GetAllTrips()
+        public List<TripDto> GetAllTrips()
         {
-            IEnumerable<Trip> result = _dbContext.Connection.Query<Trip>
+            IEnumerable<TripDto> result = _dbContext.Connection.Query<TripDto>
             ("Trips_PKG.GetAllTrips", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
@@ -73,7 +73,7 @@ namespace TrainTracker.Infra.Repository
 
             var result = _dbContext.Connection.Execute("Trips_PKG.UpdateTrip", p, commandType: CommandType.StoredProcedure);
         }
-        public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
+        public List<TripDto> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
         {
             var p = new DynamicParameters();
             if (startDate.HasValue)
@@ -94,7 +94,7 @@ namespace TrainTracker.Infra.Repository
                 p.Add("p_end_date", DBNull.Value, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             }
 
-            IEnumerable<Trip> result = _dbContext.Connection.Query<Trip>("Trips_PKG.GetTripsBetweenDates", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<TripDto> result = _dbContext.Connection.Query<TripDto>("Trips_PKG.GetTripsBetweenDates", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 

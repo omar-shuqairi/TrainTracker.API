@@ -18,6 +18,7 @@ namespace TrainTracker.Core.Data
 
         public virtual DbSet<AboutPage> AboutPages { get; set; } = null!;
         public virtual DbSet<ContactPage> ContactPages { get; set; } = null!;
+        public virtual DbSet<Contactform> Contactforms { get; set; } = null!;
         public virtual DbSet<FavoriteStation> FavoriteStations { get; set; } = null!;
         public virtual DbSet<Footer> Footers { get; set; } = null!;
         public virtual DbSet<HomePage> HomePages { get; set; } = null!;
@@ -100,6 +101,35 @@ namespace TrainTracker.Core.Data
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("PHONE");
+            });
+
+            modelBuilder.Entity<Contactform>(entity =>
+            {
+                entity.ToTable("CONTACTFORM");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
+
+                entity.Property(e => e.Datesubmitted)
+                    .HasPrecision(6)
+                    .HasColumnName("DATESUBMITTED")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP\n");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("EMAIL");
+
+                entity.Property(e => e.Fullname)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("FULLNAME");
+
+                entity.Property(e => e.Message)
+                    .HasColumnType("CLOB")
+                    .HasColumnName("MESSAGE");
             });
 
             modelBuilder.Entity<FavoriteStation>(entity =>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
 using TrainTracker.Core.DTO;
@@ -18,7 +19,9 @@ namespace TrainTracker.API.Controllers
             _tripsService = tripsService;
         }
         [HttpGet]
-        public List<Trip> GetAllTrips()
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
+        public List<TripDto> GetAllTrips()
         {
             return _tripsService.GetAllTrips();
         }
@@ -32,18 +35,24 @@ namespace TrainTracker.API.Controllers
 
 
         [HttpPost]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public void CreateTrip(Trip trip)
         {
             _tripsService.CreateTrip(trip);
         }
 
         [HttpPut]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public void UpdateTrip(Trip trip)
         {
             _tripsService.UpdateTrip(trip);
         }
 
         [HttpDelete]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("DeleteTrip/{id}")]
         public void DeleteTrip(int id)
         {
@@ -51,7 +60,9 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet("GetTripsBetweenDates")]
-        public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
+        public List<TripDto> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
         {
             return _tripsService.GetTripsBetweenDates(startDate, endDate);
         }

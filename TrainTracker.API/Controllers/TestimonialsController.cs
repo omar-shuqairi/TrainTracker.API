@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
 using TrainTracker.Core.DTO;
@@ -52,6 +53,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("GetApprovedTestimonialsForAdmindash")]
         public List<ManageTestimonialsDto> GetApprovedTestimonialsForAdmindash()
         {
@@ -59,6 +62,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("GetPendingTestimonials")]
         public List<ManageTestimonialsDto> GetPendingTestimonials()
         {
@@ -66,6 +71,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("GetRejectedTestimonials")]
         public List<ManageTestimonialsDto> GetRejectedTestimonials()
         {
@@ -80,6 +87,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("UpdateTestimonialToApprove/{id}")]
         public void UpdateTestimonialToApprove(int id)
         {
@@ -87,6 +96,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("UpdateTestimonialToReject/{id}")]
         public void UpdateTestimonialToReject(int id)
         {

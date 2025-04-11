@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
 using TrainTracker.Core.Services;
@@ -21,6 +22,8 @@ namespace TrainTracker.API.Controllers
             return _contactPageService.GetContactPage();
         }
         [HttpPut]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public void UpdateContactPage([FromBody] ContactPage contactPage)
         {
             _contactPageService.UpdateContactPage(contactPage);

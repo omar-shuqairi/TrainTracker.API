@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TrainTracker.Core.Data;
 using TrainTracker.Core.DTO;
@@ -52,6 +53,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("GetReport")]
         public List<ReportDto> GetReport([FromQuery] string type, [FromQuery] string year, [FromQuery] string? month)
         {

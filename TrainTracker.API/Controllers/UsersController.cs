@@ -20,6 +20,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         public List<UsersDetailsDto> GetAllUsers()
         {
             return _usersService.GetAllUsers();
@@ -54,6 +56,8 @@ namespace TrainTracker.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CheckClaimsAtt("RoleId", "1")]
         [Route("GetCountOfUsers")]
         public int GetCountOfUsers()
         {

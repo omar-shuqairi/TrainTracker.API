@@ -11,5 +11,7 @@ namespace TrainTracker.Core.DTO
         public string Period { get; set; }
         public int UsersCount { get; set; }
         public int ReservationsCount { get; set; }
+
+        public int Profit { get; set; }
     }
 }

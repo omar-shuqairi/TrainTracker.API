@@ -28,7 +28,7 @@ namespace TrainTracker.Infra.Services
             _tripsRepository.DeleteTrip(id);
         }
 
-        public List<Trip> GetAllTrips()
+        public List<TripDto> GetAllTrips()
         {
             return _tripsRepository.GetAllTrips();
         }
@@ -42,7 +42,7 @@ namespace TrainTracker.Infra.Services
         {
             _tripsRepository.UpdateTrip(trip);
         }
-        public List<Trip> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
+        public List<TripDto> GetTripsBetweenDates(DateTime? startDate, DateTime? endDate)
         {
             return _tripsRepository.GetTripsBetweenDates(startDate, endDate);
         }
